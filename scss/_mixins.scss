@@ -1,0 +1,112 @@
+@mixin img($width, $height, $objectPosition: center, $obFit: cover) {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: $width #{'/'} $height;
+  object-fit: $obFit;
+  object-position: $objectPosition;
+}
+
+@mixin gridCards($type: fit, $min: 280px, $max: 1fr, $gap: 30px) {
+  display: grid;
+  gap: $gap;
+  grid-template-columns: repeat(auto-#{$type}, minmax($min, $max));
+}
+
+@mixin flexCards( $col: 5, $gap: 50px ,$minWidth: 280px, $flexWrap: wrap) {
+    display: flex;
+    @if ($flexWrap != nowrap) {
+        flex-wrap: $flexWrap;
+    }
+    gap: $gap;
+    & > * {
+        @if ( min-width != "") {
+            min-width: $minWidth;
+        }
+        flex: 0 1 calc( (100% - ( $gap * (#{$col} - 1))) / #{$col});
+    }
+}
+
+
+
+//  Адаптивна властивість (clamp)
+@mixin adaptiveValue($property, $startSize, $minSize, $keepSize: 0, $widthFrom: $containerWidth, $widthTo: $minWidth) {
+	@if ($startSize==0) {
+		$startSize: 0.000001;
+	}
+	@if ($minSize==0) {
+		$minSize: 0.000001;
+	}
+
+	// Для calc();
+	$addSize: math.div($startSize - $minSize, 16);
+
+	@if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+		$widthFrom: $maxWidth;
+	}
+
+	// Брейк-поїнти в EM
+	$widthFromMedia: toEm($widthFrom);
+	$widthToMedia: toEm($widthTo);
+
+	// Формула плаваючого значення
+	// Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+	$slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+	$yIntersection: -$widthTo * $slope + $minSize;
+	@if ($yIntersection==0) {
+		$yIntersection: 0.000001;
+	}
+	$flyValue: #{toRem($yIntersection)}" + " #{$slope * 100}vw;
+
+	// Отримання значення властивості
+	$propertyValue: #{"clamp(" toRem($minSize) "," $flyValue "," toRem($startSize) ")"};
+	// Якщо негативні значення
+	@if ($minSize > $startSize) {
+		$propertyValue: #{"clamp(" toRem($startSize) "," $flyValue "," toRem($minSize) ")"};
+	}
+
+	// Встановлюємо значення за замовчуванням
+	@if $keepSize != 1 and $keepSize != 3 {
+		@media (min-width: $widthFromMedia) {
+			#{$property}: toRem($startSize);
+		}
+	}
+	// Адаптуємо розмір у проміжку між зазначеними ширинами в'юпорту
+	@media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+		// Якщо підтримується clamp();
+		@supports (#{$property}: $propertyValue) {
+			#{$property}: $propertyValue;
+		}
+		// Якщо не підтримується clamp();
+		@supports not (#{$property}: $propertyValue) {
+			#{$property}: calc(#{toRem($minSize)} + #{$addSize} * (100vw - #{toRem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
+		}
+	}
+	@if $keepSize != 1 and $keepSize != 2 {
+		@media (max-width: $widthToMedia) {
+			#{$property}: toRem($minSize);
+		}
+	}
+}
+
+
+%font-family {
+  font-family: "Causten", sans-serif;
+}
+
+%second-family {
+  font-family: "Core Sans", sans-serif;
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+// Режим роботи – може приймати числові значення 0 / не вказано , 1, 2 або 3:
+
+    // 0 / не вказано – Якщо ширина екрану більше ніж ширина від, то значення властивості дорівнює початковому значенню. Якщо ширина екрану менше ніж ширина до, то значення властивості дорівнюватиме кінцевому значенню.
+    // 1 – Міксин буде працювати тільки між мінімальною та максимальною шириною екрану, або тільки у зазначених проміжках якщо вони задані (про проміжки дивись далі). За цих ширин, значення властивості будуть за замовчюванням або успадковуватися від предків.
+    // 2 – Якщо ширина екрана більше ніж ширина від, то значення властивості дорівнює початковому значенню. Якщо ширина екрану менше ніж ширина до, значення властивості буде за замовчуванням або успадковуватися від предків.
+    // 3 – Якщо ширина екрана більше ніж ширина від, то значення властивості буде за замовчуванням або успадковуватися від предків. Якщо ширина екрана менше ніж ширина до, то значення властивості дорівнюватиме кінцевому значенню.

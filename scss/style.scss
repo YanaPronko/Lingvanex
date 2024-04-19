@@ -1,15 +1,24 @@
-@use "sass:math";
+@use 'sass:math';
 
-@import "_fonts";
+@import '_fonts';
 
-@import "_reset";
+@import '_reset';
 
-@import "_functions";
+@import '_functions';
 
-@import "_variables";
+@import "_mixins";
+
+@import '_variables';
+
+@import "_common";
+
+@import '_header';
+@import '_footer';
+@import "_hero";
+@import "solutions";
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: toRem(18);
@@ -27,7 +36,15 @@ body {
   }
 }
 
-[class*="__container"] {
+.page {
+  &__section {
+    &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 80, 40);
+    }
+  }
+}
+
+[class*='__container'] {
   margin: 0 auto;
   max-width: #{$containerWidth}px;
   padding-left: toRem(15);

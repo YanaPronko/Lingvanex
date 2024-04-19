@@ -1,0 +1,36 @@
+.page {
+
+    &__section {
+    }
+}
+.solutions {
+
+    &__container {
+     > * {
+        &:not(:last-child) {
+          margin-bottom: toRem(24);
+        }
+      }
+    }
+
+    &__label {
+      color: $tabs-text-color;
+      max-width: toRem(681);
+
+      &:not(:last-child) {
+        @include adaptiveValue('margin-bottom', 70, 40);
+      }
+    }
+
+    &__cards {
+      @extend %flex-center;
+      @include flexCards( $col: 3, $gap: toRem(20),$minWidth: toRem(400), $flexWrap: wrap);
+    }
+    &__item {
+    }
+}
+.solutions-padding {
+  @include adaptiveValue("padding-top", 64, 34);
+  @include adaptiveValue("padding-bottom", 64, 34);
+
+}

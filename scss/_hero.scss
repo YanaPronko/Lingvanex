@@ -1,0 +1,32 @@
+.hero {
+
+  .hero__wrapper {
+    @include adaptiveValue('padding-left', 90.5, 20);
+    @include adaptiveValue('padding-right', 90.5, 20);
+
+    * {
+      &:not(:last-child) {
+        margin-bottom: toRem(24);
+      }
+    }
+  }
+
+  &__title {
+    color: $dark-color;
+    font-size: toRem(70);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: toRem(-3.5);
+    text-align: center;
+  }
+
+  &__label {
+    font-family: 'Manrope', sans-serif;
+    color: $subtitle-color;
+
+    &:not(:last-child) {
+      margin-bottom: toRem(40);
+    }
+  }
+}
+

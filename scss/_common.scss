@@ -1,0 +1,102 @@
+.label {
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: toRem(-0.18);
+}
+
+.btn {
+  display: block;
+  @include adaptiveValue('min-width', 366, 320);
+  padding: toRem(20) toRem(24);
+  margin: 0 auto;
+  text-align: center;
+  border-radius: toRem(12);
+  background: $btn-color;
+  color: $light-color;
+  font-size: toRem(20);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: toRem(-0.2);
+
+  @media (any-hover: hover) {
+    &:hover {
+      box-shadow: 0 0 0 toRem(32) rgba(255, 255, 255, 0);
+      animation: pulse 1s;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 $btn-color;
+  }
+}
+
+.subtitle {
+  color: $dark-color;
+  text-align: center;
+  font-size: toRem(60);
+  font-weight: 900;
+  line-height: 1; /* 60px */
+  letter-spacing: toRem(-3);
+}
+
+.card {
+  @extend %flex-center;
+  flex-direction: column;
+  padding: toRem(24) toRem(16) toRem(16);
+  border-radius: 32px;
+  border: toRem(2) solid $card-border-color;
+  box-shadow: 0 toRem(2) toRem(6) 0 rgba(0, 0, 0, 0.08);
+
+  &__description {
+    > * {
+      &:not(:last-child) {
+        margin-bottom: toRem(12);
+      }
+    }
+    &:not(:last-child) {
+      margin-bottom: toRem(16);
+    }
+  }
+
+  &__subtitle {
+    color: $dark-color;
+    text-align: center;
+    font-size: toRem(34);
+    font-weight: 900;
+    line-height: 1; /* 34px */
+    letter-spacing: toRem(-1.02);
+  }
+
+  &__text {
+    p:not(:last-child) {
+      margin-bottom: toRem(10);
+    }
+  }
+
+  &__img-wrapper {
+    @extend %flex-center;
+    min-height: toRem(245);
+    width: 100%;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 314 / 129;
+    object-fit: contain;
+
+    &--high {
+      width: 100%;
+      aspect-ratio: 343 / 161;
+      object-fit: contain;
+    }
+
+    &--long {
+      width: 100%;
+      aspect-ratio: 363 / 96;
+      object-fit: contain;
+    }
+  }
+}
