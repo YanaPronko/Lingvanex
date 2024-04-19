@@ -1,0 +1,19 @@
+$subtitle-color: #2A2B2FCC;
+$tabs-text-color: #2A2B2FE5;
+$card-text-color: #000000CC;
+$light-text-color: #7A869C;
+$btn-color: #0146FE;;
+$dark-color: #000000;
+$light-color: #FFFFFF;
+$bg-color: #F4F6FD;
+
+// Минимальная ширина
+$minWidth: 320;
+// Ширина полотна (макету)
+$maxWidth: 1440;
+// Ширина контейнера (0 = нет ограничения)
+$maxWidthContainer: 1240;
+
+$containerPadding: 30;
+// Ширина первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
