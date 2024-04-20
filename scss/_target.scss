@@ -1,0 +1,140 @@
+.target {
+  &__container {
+    > * {
+      &:not(:last-child) {
+        margin-bottom: toRem(32);
+      }
+    }
+  }
+
+  &__label {
+    color: $label-color;
+    &:not(:last-child) {
+      margin-bottom: toRem(64);
+    }
+  }
+  &--padding {
+    @include adaptiveValue('padding-top', 70, 34);
+  }
+}
+
+.tabs {
+  padding: 0 toRem(42) 0 toRem(61);
+  &:not(:last-child) {
+    margin-bottom: toRem(120);
+  }
+  &__navigation {
+    @extend %flex-center;
+    gap: toRem(22);
+    flex-wrap: wrap;
+    &:not(:last-child) {
+      margin-bottom: toRem(32);
+    }
+  }
+
+  &__item {
+    padding: toRem(16) toRem(32);
+    border-radius: toRem(12);
+    background: $add-bg-color;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: lighten($color: $btn-color, $amount: 30%);
+      }
+    }
+
+    &.tabs__item--active {
+      background: $btn-color;
+    }
+  }
+
+  &__btn {
+    color: $dark-color;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: toRem(-0.54);
+    .tabs__item--active & {
+      color: $light-color;
+    }
+  }
+
+  &__body {
+    position: relative;
+    border-radius: toRem(32);
+    border: toRem(2) solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0px toRem(4) toRem(12) 0px rgba(0, 0, 0, 0.12);
+    &::after {
+      content: '';
+      position: absolute;
+      left: toRem(54);
+      bottom: toRem(-27);
+      width: 91.323401%; /* 1042/1141 */
+      height: toRem(27);
+      border-bottom-left-radius: toRem(32);
+      border-bottom-right-radius: toRem(32);
+      border-bottom: toRem(2) solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0px toRem(4) toRem(12) 0px rgba(0, 0, 0, 0.12);
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      left: toRem(88);
+      bottom: toRem(-56);
+      width: 85.276074%; /* 973/1141 */
+      height: toRem(27);
+      border-bottom-left-radius: toRem(32);
+      border-bottom-right-radius: toRem(32);
+      border-bottom: toRem(2) solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0px toRem(4) toRem(12) 0px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  &__wrapper {
+    @include flexCards($col: 2, $gap: toRem(32), $minWidth: toRem(320), $flexWrap: wrap);
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding: toRem(42);
+    transition: all 0.3s ease;
+  }
+
+  &__subtitle {
+    text-align: left;
+    &:not(:last-child) {
+      margin-bottom: toRem(32);
+    }
+  }
+
+  &__list {
+    padding-left: toRem(20);
+    color: rgba(42, 43, 47, 0.9);
+    line-height: 1.4;
+  }
+
+  &__list-item {
+    list-style-type: disc;
+  }
+
+  &__image {
+    @include img(507, 338, center, cover);
+    border-radius: toRem(32);
+  }
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s
+}
+
+@keyframes fade {
+  from{
+    opacity: 0.1;
+  }
+  to{
+    opacity: 1;
+  }
+}

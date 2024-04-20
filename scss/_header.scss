@@ -1,5 +1,6 @@
 .header__container {
   padding: toRem(20) 0;
+  @include adaptiveValue("margin-bottom", 80, 40);
 }
 
 .header__title {

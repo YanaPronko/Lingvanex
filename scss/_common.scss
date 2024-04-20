@@ -1,7 +1,41 @@
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: toRem(18);
+  letter-spacing: toRem(-0.18);
+  line-height: 1.4;
+  scroll-behavior: smooth;
+  background-color: $light-color;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: clip;
+  main {
+    flex-grow: 1;
+  }
+}
+
+.page {
+  &__section {
+    @include adaptiveValue('margin-bottom', 80, 40);
+  }
+}
+
+[class*='__container'] {
+  margin: 0 auto;
+  max-width: #{$containerWidth}px;
+  padding-left: toRem(15);
+  padding-right: toRem(15);
+}
+
 .label {
   margin: 0 auto;
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.45;
   letter-spacing: toRem(-0.18);
 }
 
@@ -18,6 +52,7 @@
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: toRem(-0.2);
+  transition: all 0.3s ease;
 
   @media (any-hover: hover) {
     &:hover {
@@ -38,8 +73,17 @@
   text-align: center;
   font-size: toRem(60);
   font-weight: 900;
-  line-height: 1; /* 60px */
+  line-height: 0.9;
   letter-spacing: toRem(-3);
+}
+
+.heading {
+  color: $dark-color;
+  text-align: center;
+  font-size: toRem(34);
+  font-weight: 900;
+  line-height: 1; /* 34px */
+  letter-spacing: toRem(-1.02);
 }
 
 .card {
@@ -49,6 +93,12 @@
   border-radius: 32px;
   border: toRem(2) solid $card-border-color;
   box-shadow: 0 toRem(2) toRem(6) 0 rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  @media (any-hover: hover) {
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
 
   &__description {
     > * {
@@ -61,16 +111,8 @@
     }
   }
 
-  &__subtitle {
-    color: $dark-color;
-    text-align: center;
-    font-size: toRem(34);
-    font-weight: 900;
-    line-height: 1; /* 34px */
-    letter-spacing: toRem(-1.02);
-  }
-
   &__text {
+    text-align: center;
     p:not(:last-child) {
       margin-bottom: toRem(10);
     }

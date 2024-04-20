@@ -1,0 +1,95 @@
+.help {
+  background-color: $add-bg-color;
+  &__container {
+    > * {
+      &:not(:last-child) {
+        margin-bottom: toRem(70);
+      }
+    }
+  }
+  &--paddings {
+    @include adaptiveValue('padding-top', 64, 34);
+    @include adaptiveValue('padding-bottom', 70, 34);
+  }
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(toRem(290), 1fr));
+  column-gap: toRem(16);
+  row-gap: toRem(56);
+  @include adaptiveValue('padding-left', 164, 20);
+  @include adaptiveValue('padding-right', 164, 20);
+
+  &__item {
+    padding-top: toRem(4);
+    > * {
+      &:not(:last-child) {
+        margin-bottom: toRem(14);
+      }
+    }
+  }
+
+  &__subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: toRem(24);
+
+    &--triangle-top {
+      &::before {
+        content: url('../img/options/triangle_top.svg');
+        width: toRem(58);
+        height: toRem(56);
+        flex: 0 0 toRem(57);
+      }
+    }
+
+    &--triangle-bottom {
+      &::before {
+        content: url('../img/options/triangle__bottom.svg');
+        width: toRem(58);
+        height: toRem(56);
+        flex: 0 0 toRem(57);
+      }
+    }
+
+    &--square {
+      &::before {
+        content: url('../img/options/square.svg');
+        width: toRem(58);
+        height: toRem(56);
+        flex: 0 0 toRem(57);
+      }
+    }
+
+    &--circle {
+      &:before {
+        content: url('../img/options/circle.svg');
+        width: toRem(58);
+        height: toRem(56);
+        flex: 0 0 toRem(57);
+      }
+    }
+
+    &--rhomb {
+      &::before {
+        content: url('../img/options/rhomb.svg');
+        width: toRem(58);
+        height: toRem(56);
+        flex: 0 0 toRem(57);
+      }
+    }
+  }
+
+  &__description {
+    p {
+      color: $light-text-color;
+      text-align: center;
+      line-height: 1.4;
+      &:not(:last-child) {
+        margin-bottom: toRem(14);
+      }
+    }
+  }
+}
