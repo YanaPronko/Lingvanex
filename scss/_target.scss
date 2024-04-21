@@ -95,7 +95,7 @@
   }
 
   &__wrapper {
-    @include flexCards($col: 2, $gap: toRem(32), $minWidth: toRem(320), $flexWrap: wrap);
+    @include flexCards($col: 2, $gap: toRem(32), $minWidth: toRem(280), $flexWrap: wrap);
     display: flex;
     align-items: start;
     justify-content: space-between;
@@ -132,9 +132,6 @@
   &__image {
     @include img(507, 338, center, cover);
     border-radius: toRem(32);
-    @media (max-width: toEm(400)) {
-      display: none;
-    }
   }
 }
 
