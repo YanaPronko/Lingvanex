@@ -167,6 +167,8 @@ body {
   letter-spacing: -0.0125rem;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  -webkit-animation: color-change-2x 2s linear infinite alternate both;
+          animation: color-change-2x 2s linear infinite alternate both;
 }
 @media (min-width: 79.375em) {
   .btn {
@@ -210,6 +212,22 @@ body {
   0% {
     -webkit-box-shadow: 0 0 0 0 #0146FE;
             box-shadow: 0 0 0 0 #0146FE;
+  }
+}
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: #7A869C;
+  }
+  100% {
+    background: #0146FE;
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #7A869C;
+  }
+  100% {
+    background: #0146FE;
   }
 }
 .subtitle {

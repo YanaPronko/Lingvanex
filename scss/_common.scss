@@ -53,6 +53,7 @@ body {
   line-height: 1.2;
   letter-spacing: toRem(-0.2);
   transition: all 0.3s ease;
+  animation: color-change-2x  2s linear infinite alternate both;
 
   @media (any-hover: hover) {
     &:hover {
@@ -65,6 +66,15 @@ body {
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 $btn-color;
+  }
+}
+
+@keyframes color-change-2x {
+  0% {
+    background: $light-text-color;
+  }
+  100% {
+    background: $btn-color;
   }
 }
 
