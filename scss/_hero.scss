@@ -1,12 +1,13 @@
 .hero {
   .hero__wrapper {
-    @include adaptiveValue('padding-left', 90.5, 20);
-    @include adaptiveValue('padding-right', 90.5, 20);
+    @include adaptiveValue('padding-left', 90.5, 0);
+    @include adaptiveValue('padding-right', 90.5, 0);
   }
 
   &__title {
     color: $dark-color;
-    font-size: toRem(70);
+    @include adaptiveValue('font-size', 70, 55);
+    // font-size: toRem(70);
     font-weight: 900;
     line-height: 1;
     letter-spacing: toRem(-3.5);

@@ -12,17 +12,19 @@
     max-width: toRem(681);
 
     &:not(:last-child) {
-      @include adaptiveValue('margin-bottom', 70, 40);
+      @include adaptiveValue('margin-bottom', 70, 30);
     }
   }
 
   &__cards {
-    @extend %flex-center;
-    @include flexCards($col: 3, $gap: toRem(20), $minWidth: toRem(400), $flexWrap: wrap);
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    @include flexCards($col: 3, $gap: toRem(20), $minWidth: toRem(290), $flexWrap: wrap);
   }
 
   &--padding {
     @include adaptiveValue('padding-top', 64, 34);
-    @include adaptiveValue('padding-bottom', 64, 34);
+    @include adaptiveValue('padding-bottom', 64, 0);
   }
 }

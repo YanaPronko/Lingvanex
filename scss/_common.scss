@@ -41,7 +41,7 @@ body {
 
 .btn {
   display: block;
-  @include adaptiveValue('min-width', 366, 320);
+  @include adaptiveValue('min-width', 366, 290);
   padding: toRem(20) toRem(24);
   margin: 0 auto;
   text-align: center;
@@ -71,7 +71,7 @@ body {
 .subtitle {
   color: $dark-color;
   text-align: center;
-  font-size: toRem(60);
+  @include adaptiveValue('font-size', 60, 40);
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: toRem(-3);
@@ -80,7 +80,7 @@ body {
 .heading {
   color: $dark-color;
   text-align: center;
-  font-size: toRem(34);
+  @include adaptiveValue('font-size', 34, 20);
   font-weight: 900;
   line-height: 1; /* 34px */
   letter-spacing: toRem(-1.02);
@@ -89,6 +89,8 @@ body {
 .card {
   @extend %flex-center;
   flex-direction: column;
+  max-width: toRem(500);
+  min-height: 100%;
   padding: toRem(24) toRem(16) toRem(16);
   border-radius: 32px;
   border: toRem(2) solid $card-border-color;
